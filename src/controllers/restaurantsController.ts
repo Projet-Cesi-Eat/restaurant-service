@@ -1,4 +1,4 @@
-import restaurantModel from '../schema/restaurantSchema'
+import restaurantModel, { RestaurantsInterface } from '../schema/restaurantSchema'
 
 export class RestaurantsServices {
   
