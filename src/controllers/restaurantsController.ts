@@ -62,7 +62,62 @@ export class RestaurantsServices {
   /**
    * UPDATE restaurant ✅
    */
-  public updateOneRestaurant<RestaurantsInterface>() {
+  public updateOneRestaurant<RestaurantsInterface>(id: any, body: any) {
+    return new Promise<RestaurantsInterface>((resolve, reject) => {
+      restaurantModel.findByIdAndUpdate(
+        id,
+        body,
+        (err: any, restaurant: any) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(restaurant);
+          }
+        }
+      );
+    });
+  }
+
+  /**
+   * UPDATE article
+   */
+  public updateArticle<RestaurantsInterface>(
+    id: any,
+    type: any,
+    item: any,
+    body: any
+  ) {
+    return new Promise<RestaurantsInterface>((resolve, reject) => {
+      restaurantModel.findById(id, () => {
+        restaurantModel.find(type, () => {
+          restaurantModel.find(item, (err: any, restaurant: any) => {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(restaurant);
+            }
+          });
+        });
+      });
+      /* restaurantModel.findOneAndUpdate(
+        id,
+        { restArticles: body },
+        { new: false },
+        (err: any, restaurant: any) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(restaurant);
+          }
+        }
+      ); */
+    });
+  }
+
+  /**
+   * UPDATE menu
+   */
+  public updateMenu<RestaurantsInterface>(id: any, body: any) {
     return new Promise<RestaurantsInterface>((resolve, reject) => {
       restaurantModel.find((err: Error, restaurants: RestaurantsInterface) => {
         if (err) {
@@ -75,20 +130,51 @@ export class RestaurantsServices {
   }
 
   /**
-   * DELETE restaurant ✅
+   * DELETE one restaurant ✅
    */
-  public deleteOneRestaurant<RestaurantsInterface>(name: string) {
+  public deleteOneRestaurant<RestaurantsInterface>(id: any) {
     return new Promise<RestaurantsInterface>((resolve, reject) => {
-      restaurantModel.find(
-        { restName: name },
-        (err: Error, restaurants: RestaurantsInterface) => {
+      restaurantModel.findByIdAndDelete(
+        id,
+        { strict: false },
+        (err: any, restaurant: any) => {
           if (err) {
             reject(err);
           } else {
-            resolve(restaurants);
+            resolve(restaurant);
           }
         }
       );
+    });
+  }
+
+  /**
+   * DELETE article
+   */
+  public deleteArticle<RestaurantsInterface>(id: string) {
+    return new Promise<RestaurantsInterface>((resolve, reject) => {
+      restaurantModel.find((err: Error, restaurants: RestaurantsInterface) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(restaurants);
+        }
+      });
+    });
+  }
+
+  /**
+   * DELETE menu
+   */
+  public deleteMenu<RestaurantsInterface>(id: string) {
+    return new Promise<RestaurantsInterface>((resolve, reject) => {
+      restaurantModel.find((err: Error, restaurants: RestaurantsInterface) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(restaurants);
+        }
+      });
     });
   }
 }
