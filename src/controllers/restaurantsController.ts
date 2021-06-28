@@ -79,57 +79,6 @@ export class RestaurantsServices {
   }
 
   /**
-   * UPDATE article
-   */
-  public updateArticle<RestaurantsInterface>(
-    id: any,
-    type: any,
-    item: any,
-    body: any
-  ) {
-    return new Promise<RestaurantsInterface>((resolve, reject) => {
-      restaurantModel.findById(id, () => {
-        restaurantModel.find(type, () => {
-          restaurantModel.find(item, (err: any, restaurant: any) => {
-            if (err) {
-              reject(err);
-            } else {
-              resolve(restaurant);
-            }
-          });
-        });
-      });
-      /* restaurantModel.findOneAndUpdate(
-        id,
-        { restArticles: body },
-        { new: false },
-        (err: any, restaurant: any) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(restaurant);
-          }
-        }
-      ); */
-    });
-  }
-
-  /**
-   * UPDATE menu
-   */
-  public updateMenu<RestaurantsInterface>(id: any, body: any) {
-    return new Promise<RestaurantsInterface>((resolve, reject) => {
-      restaurantModel.find((err: Error, restaurants: RestaurantsInterface) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(restaurants);
-        }
-      });
-    });
-  }
-
-  /**
    * DELETE one restaurant ✅
    */
   public deleteOneRestaurant<RestaurantsInterface>(id: any) {
@@ -145,36 +94,6 @@ export class RestaurantsServices {
           }
         }
       );
-    });
-  }
-
-  /**
-   * DELETE article
-   */
-  public deleteArticle<RestaurantsInterface>(id: string) {
-    return new Promise<RestaurantsInterface>((resolve, reject) => {
-      restaurantModel.find((err: Error, restaurants: RestaurantsInterface) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(restaurants);
-        }
-      });
-    });
-  }
-
-  /**
-   * DELETE menu
-   */
-  public deleteMenu<RestaurantsInterface>(id: string) {
-    return new Promise<RestaurantsInterface>((resolve, reject) => {
-      restaurantModel.find((err: Error, restaurants: RestaurantsInterface) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(restaurants);
-        }
-      });
     });
   }
 }

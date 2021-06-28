@@ -40,49 +40,16 @@ router.post('/', (req: Request, res: Response) => {
 /**
  * Update one restaurant ✅
  */
-router.put(
-  '/restaurant/',
-  function (req: Request, res: Response, next: NextFunction) {
-    const id = req.query.id;
-    services
-      .updateOneRestaurant(id, req.body)
-      .then((restaurant) => res.status(201).json({ restaurant }))
-      .catch((error) => res.status(400).json({ error }));
-  }
-);
+router.put('/', function (req: Request, res: Response, next: NextFunction) {
+  const id = req.query.id;
+  services
+    .updateOneRestaurant(id, req.body)
+    .then((restaurant) => res.status(201).json({ restaurant }))
+    .catch((error) => res.status(400).json({ error }));
+});
 
 /**
- * Update articles from one restaurant
- */
-router.put(
-  '/article/',
-  function (req: Request, res: Response, next: NextFunction) {
-    const id = req.query.id;
-    const type = req.query.type;
-    const item = req.query.item;
-    services
-      .updateArticle(id, type, item, req.body)
-      .then((restaurant) => res.status(201).json({ restaurant }))
-      .catch((error) => res.status(400).json({ error }));
-  }
-);
-
-/**
- * Update menu from one restaurant
- */
-router.put(
-  '/restaurant/',
-  function (req: Request, res: Response, next: NextFunction) {
-    const id = req.query.id;
-    services
-      .updateMenu(id, req.body)
-      .then((restaurant) => res.status(201).json({ restaurant }))
-      .catch((error) => res.status(400).json({ error }));
-  }
-);
-
-/**
- * Delete one restaurant
+ * Delete one restaurant ✅
  */
 router.delete('/', function (req: Request, res: Response, next: NextFunction) {
   const id = req.query.id;
