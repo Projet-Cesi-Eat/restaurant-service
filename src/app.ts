@@ -15,6 +15,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.use('/restaurant', restaurantsRouter);
+app.use('/restaurants', restaurantsRouter);
 
 module.exports = app;
