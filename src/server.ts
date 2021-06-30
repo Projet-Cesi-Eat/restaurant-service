@@ -14,7 +14,7 @@ const normalizePort = (val: string) => {
   }
   return false;
 };
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(process.env.PORT || '3002');
 app.set('port', port);
 
 const errorHandler = (error: any) => {
@@ -53,13 +53,13 @@ server.listen(port);
  * Database Connection
  */
 mongoose
-.connect('mongodb+srv://admin:admin@cluster0.6msgl.mongodb.net/CesiEat/', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  dbName: 'CesiEat',
-})
- .then(() => console.log('Connexion à MongoDB CesiEat réussie !'))
- .catch(() => console.log('Connexion à MongoDB CesiEat échouée !'));
+  .connect('mongodb+srv://admin:admin@cluster0.6msgl.mongodb.net/CesiEat/', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    dbName: 'CesiEat',
+  })
+  .then(() => console.log('Connexion à MongoDB CesiEat réussie !'))
+  .catch(() => console.log('Connexion à MongoDB CesiEat échouée !'));
 
 mongoose.connection.on('connected', function () {
   console.log('database is ready now');
